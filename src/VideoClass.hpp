@@ -1,27 +1,20 @@
-//
-//  vid.hpp
-//  video_mapper
-//
-//  Created by marco.pisano on 30.03.20.
-//
+#ifndef VideoClass_hpp
+#define VideoClass_hpp
 
-#ifndef vid_hpp
-#define vid_hpp
 #include <stdio.h>
 #include "ofMain.h"
+#include "ofxGui.h"
+#include "ofxDatGui.h"
+#include "ofxOpenCv.h"
 
+extern ofVideoPlayer clip;
+extern int videoX, videoY, videoW, videoH, videoMargin, videoDivisorH, videoDivisorW;
 
-class VideoClass{
+class VideoExtern{
 public:
     void setup();
     void update();
     void draw();
-    ofVideoPlayer video;
-private:
-
 };
 
-
-
-
-#endif /* vid_hpp */
+#endif /* VideoClass_hpp */
