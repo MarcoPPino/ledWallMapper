@@ -14,7 +14,7 @@ screenshots will follow as soon as i get it to work again.
 issues:
 - RectClass instantiates rectTransform just once instead of 5 times
 - export of video needs to be rewritten
-- Mirrors bigger than the video scale on the mirrordisplay
+- Mirrors bigger than the video scales the displayed part on the mirrordisplay
 
 todo: 
 - LESS MESS
