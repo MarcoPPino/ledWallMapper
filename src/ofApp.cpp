@@ -43,12 +43,6 @@ void ofApp::draw(){
     fboVid.draw(ofGetWidth()/3, 0);
     fboView.draw(0,0);
     
-    for(int i=0; i<ELEMCOUNT; i++){
-        if (mirror[i].clickedMirrorDisplay == true) {
-            mirror[i].gui.draw();
-        }
-    }
-    
 }
 
 //--------------------------------------------------------------

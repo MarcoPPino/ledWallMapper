@@ -11,7 +11,7 @@
 #include <stdio.h>
 class RectTransform{
 public:
-    void setup(int, int);
+    void setup(int, int, int, int);
     void update();
     void draw();
 
@@ -28,6 +28,7 @@ public:
     int cornerSize, sideSize, borderSize;
     int ofsetX, ofsetY;
     int startWidth, startHeight;
+    int x,y,width,height;
     
     bool insideCorner1 = false;
     bool insideCorner2 = false;

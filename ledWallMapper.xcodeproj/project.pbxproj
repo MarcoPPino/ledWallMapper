@@ -2094,8 +2094,8 @@
 			isa = PBXGroup;
 			children = (
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
-				E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */,
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
+				E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */,
 				632EB4AF6770F2821D2DB462 /* VideoClass.hpp */,
 				3DF35D44D4CC7D4614659187 /* VideoClass.cpp */,
 				5C2C1AF08372AE09DAA99796 /* RectClass.hpp */,

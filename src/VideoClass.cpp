@@ -14,8 +14,6 @@ void VideoExtern::setup(){
         videoDisplayW = videoDisplayH * clip.getWidth() / clip.getHeight();
         videoDisplayX = fboVid.getWidth() / 2 - videoDisplayW / 2;
         videoDisplayY = fboVid.getHeight() / 2 - videoDisplayH / 2;
-        
-        
     }else{
         videoDisplayW = fboVid.getWidth() - videoDisplayMargin;
         videoDisplayH = videoDisplayW * clip.getHeight() / clip.getWidth();

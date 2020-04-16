@@ -3,8 +3,8 @@
 #include <GLUT/GLUT.h>
 
 //--------------------------------------------------------------
-void RectTransform::setup(int initWidth, int initHeight ){
-    rec.set(ofGetWidth()/ 2 - initWidth / 2, ofGetHeight() / 2 - initHeight / 2, initWidth, initHeight);
+void RectTransform::setup(int initX, int initY, int initWidth, int initHeight ){
+    rec.set(initX, initY, initWidth, initHeight);
     cornerSize = 10;
     sideSize = 8;
     
@@ -22,6 +22,12 @@ void RectTransform::update(){
     side2.set(rec.getMaxX() - sideSize / 2, rec.getVertAnchor(OF_ALIGN_VERT_CENTER) - sideSize / 2, sideSize, sideSize);
     side3.set(rec.getHorzAnchor(OF_ALIGN_HORZ_CENTER) - sideSize / 2, rec.getMaxY() - sideSize / 2, sideSize, sideSize);
     side4.set(rec.getMinX() - sideSize / 2, rec.getVertAnchor(OF_ALIGN_VERT_CENTER) - sideSize / 2, sideSize, sideSize);
+    
+    x = rec.getX();
+    y = rec.getY();
+    width = rec.getWidth();
+    height = rec.getHeight();
+    
 }
 
 //--------------------------------------------------------------
