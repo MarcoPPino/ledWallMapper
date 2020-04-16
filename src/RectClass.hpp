@@ -6,6 +6,7 @@
 #include "ofxGui.h"
 #include "ofxDatGui.h"
 #include "ofxOpenCv.h"
+#include "RectTransform.hpp"
 
 extern ofxPanel gui;
 
@@ -15,6 +16,9 @@ public:
     void setup(int mirrorGrabberArr[]);
     void update();
     void draw();
+    
+    void keyPressed(int key);
+    void keyReleased(int key);
     void mouseDragged(int x, int y, int button);
     void mousePressed(int x, int y, int button);
     void mouseReleased(int x, int y, int button);
@@ -22,12 +26,13 @@ public:
     ofxPanel gui;
     ofParameterGroup mainGroup;
     ofParameterGroup params;
-    ofParameter<int> posX, posY, width, height;
+    ofParameter<int>  mirrorBoundsX, mirrorBoundsY, mirrorBoundsW, mirrorBoundsH;
     int displayX, displayY, displayWidth, displayHeight;
-    int mirrorBoundsX, mirrorBoundsY, mirrorBoundsW, mirrorBoundsH;
+    int nativeX, nativeY, nativeW, nativeH;
     
     ofxCvColorImage mirrorContainer;
     
+    RectTransform rectTransform;
     
     int divider = 4;
     int ofsetx, ofsety;

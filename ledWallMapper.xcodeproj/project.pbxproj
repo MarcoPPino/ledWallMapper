@@ -11,6 +11,7 @@
 		28189DB43CD152201712E778 /* ofxCvHaarFinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B12400EDB0EE58FFA423EE0E /* ofxCvHaarFinder.cpp */; };
 		2C991D31E6A584C34DAD1F9E /* RectClass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75C31157397C5D5C9BE36067 /* RectClass.cpp */; };
 		3A47706C1DF9A0D4045568C0 /* ofxGuiGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D015FA91E7717ECC9591593E /* ofxGuiGroup.cpp */; };
+		3D148E41243F6A4600943868 /* RectTransform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D148E3F243F6A4600943868 /* RectTransform.cpp */; };
 		3E14E6F4BFE69A05530E2A44 /* ofxDatGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F02DC6E8EA993AA4CACE459 /* ofxDatGui.cpp */; };
 		40E7CEC62E17A8F6E6A443AE /* ofxCvGrayscaleImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6ADC1729A74FA3C4546C8168 /* ofxCvGrayscaleImage.cpp */; };
 		413A3F52C6AC90B4F28A6A1C /* ofxToggle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 448869D12B9D05298EF975CB /* ofxToggle.cpp */; };
@@ -174,6 +175,8 @@
 		3CC741100B92BDA61AE0539B /* lsh_index.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = lsh_index.h; path = ../../addons/ofxOpenCv/libs/opencv/include/opencv2/flann/lsh_index.h; sourceTree = SOURCE_ROOT; };
 		3CF0F009212588261A015BA2 /* intrin_avx.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = intrin_avx.hpp; path = ../../addons/ofxOpenCv/libs/opencv/include/opencv4/opencv2/core/hal/intrin_avx.hpp; sourceTree = SOURCE_ROOT; };
 		3CF911870940E533C72C5C3D /* defines.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = defines.h; path = ../../addons/ofxOpenCv/libs/opencv/include/opencv2/flann/defines.h; sourceTree = SOURCE_ROOT; };
+		3D148E3F243F6A4600943868 /* RectTransform.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RectTransform.cpp; sourceTree = "<group>"; };
+		3D148E40243F6A4600943868 /* RectTransform.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = RectTransform.hpp; sourceTree = "<group>"; };
 		3D77C49CD2E2FBEBDD6C458A /* logger.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = logger.hpp; path = ../../addons/ofxOpenCv/libs/opencv/include/opencv4/opencv2/core/utils/logger.hpp; sourceTree = SOURCE_ROOT; };
 		3D8B61C318AFC63039EE6A3B /* dynamic_smem.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = dynamic_smem.hpp; path = ../../addons/ofxOpenCv/libs/opencv/include/opencv2/core/cuda/dynamic_smem.hpp; sourceTree = SOURCE_ROOT; };
 		3DF35D44D4CC7D4614659187 /* VideoClass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = VideoClass.cpp; path = src/VideoClass.cpp; sourceTree = SOURCE_ROOT; };
@@ -2097,6 +2100,8 @@
 				3DF35D44D4CC7D4614659187 /* VideoClass.cpp */,
 				5C2C1AF08372AE09DAA99796 /* RectClass.hpp */,
 				75C31157397C5D5C9BE36067 /* RectClass.cpp */,
+				3D148E40243F6A4600943868 /* RectTransform.hpp */,
+				3D148E3F243F6A4600943868 /* RectTransform.cpp */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -2322,6 +2327,7 @@
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				EF72E2AD3165C1E55E197F5D /* VideoClass.cpp in Sources */,
+				3D148E41243F6A4600943868 /* RectTransform.cpp in Sources */,
 				2C991D31E6A584C34DAD1F9E /* RectClass.cpp in Sources */,
 				DDD6046083EFC4B593ABB2D4 /* ofxDatGuiComponent.cpp in Sources */,
 				FDA4C139072ADF4CE4D77D70 /* ofxSmartFont.cpp in Sources */,

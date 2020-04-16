@@ -8,13 +8,17 @@
 #include "ofxOpenCv.h"
 
 extern ofVideoPlayer clip;
-extern int videoX, videoY, videoW, videoH, videoMargin, videoDivisorH, videoDivisorW;
+extern int videoDisplayX, videoDisplayY, videoDisplayW, videoDisplayH, videoDisplayMargin, videoDivisorH;
 
 class VideoExtern{
 public:
     void setup();
     void update();
     void draw();
+    void keyReleased(int key);
+    
+    void processOpenFileSelection(ofFileDialogResult openFileResult);
+    
 };
 
 #endif /* VideoClass_hpp */

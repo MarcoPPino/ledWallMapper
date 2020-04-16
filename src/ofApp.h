@@ -6,6 +6,7 @@
 #include "ofxOpenCv.h"
 #include "RectClass.hpp"
 #include "VideoClass.hpp"
+#include "RectTransform.hpp"
 
 extern ofFbo fboVid;
 extern ofFbo fboView;

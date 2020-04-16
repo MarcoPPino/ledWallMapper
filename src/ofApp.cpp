@@ -53,12 +53,18 @@ void ofApp::draw(){
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
+    for(int i=0; i<ELEMCOUNT; i++){
+            mirror[i].keyPressed(key);
+    }
 
 }
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
-
+    videoExtern.keyReleased(key);
+    for(int i=0; i<ELEMCOUNT; i++){
+        mirror[i].keyReleased(key);
+       }
 }
 
 //--------------------------------------------------------------

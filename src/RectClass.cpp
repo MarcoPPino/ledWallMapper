@@ -4,17 +4,17 @@
 ofxPanel gui;
 
 void Mirror::setup(int mirrorGrabberArr[5]){
-    posX = 0; //Get Position & size of MirrorGrabber -  might change soon
-    posY = 0;
-    if(clip.getWidth() < clip.getHeight()){
-        width = clip.getWidth();
-        height = clip.getHeight() / 5;
-    }else{
-        width = clip.getWidth() / 5;
-        height = clip.getHeight() ;
+    if(clip.isLoaded()){
+        mirrorBoundsX = 0;
+        mirrorBoundsY = 0;
+        if(clip.getWidth() < clip.getHeight()){
+            mirrorBoundsW = videoDisplayW;
+            mirrorBoundsH = videoDisplayH / 5;
+        }else{
+            mirrorBoundsW = videoDisplayW / 5;
+            mirrorBoundsH = videoDisplayH;
+        }
     }
-    
-    
     displayX = mirrorGrabberArr[0] / divider; //Get Position & size of MirrorDisplay -  might change soon
     displayY = mirrorGrabberArr[1] / divider;
     displayWidth = mirrorGrabberArr[2] / divider;
@@ -22,36 +22,30 @@ void Mirror::setup(int mirrorGrabberArr[5]){
     
     mirrorContainer.allocate(ofGetWidth(), ofGetWidth()); //Allocate the Class Member context
     
-    params.setName("rect params"); // init and Setup of GUI + Param bounding
-    params.add(posX.set("posX", posX, 0, ofGetWidth() ));
-    params.add(posY.set("posY", posY, 0, ofGetHeight() ));
-    params.add(width.set("width", width, 0, width));
-    params.add(height.set("height", height, 0, height));
-    mainGroup.add(params);
-    gui.setup();
-    gui.setPosition(0,fboView.getHeight());
-    gui.add(mainGroup);
+    rectTransform.setup(25,25);
 }
 
 void Mirror::update(){
+    rectTransform.update();
+    nativeX = ofMap(mirrorBoundsX, 0, videoDisplayW, 0, clip.getWidth());
+    nativeY = ofMap(mirrorBoundsY, 0, videoDisplayH, 0, clip.getHeight());
+    nativeW = ofMap(mirrorBoundsW, 0, videoDisplayW, 0, clip.getWidth());
+    nativeH = ofMap(mirrorBoundsH, 0, videoDisplayH, 0, clip.getHeight());
+    
         clip.update(); //Update Video from videoClass
         mirrorContainer.setFromPixels(clip.getPixels().getData(), clip.getWidth(), clip.getHeight()); // Grab the Whole video. MirrorContainer is CVColorImage
         mirrorContainer.resetROI(); //release ROI to be safe and clean for the next one
-        mirrorContainer.setROI(posX * videoDivisorH, posY * videoDivisorW, width, height); //REAL MAGIC! WORK(ING) progress
-    
-        mirrorBoundsX = videoX + posX;
-        mirrorBoundsY = videoY + posY;
-        mirrorBoundsW = width / videoDivisorW;
-        mirrorBoundsH = height / videoDivisorH;
+        mirrorContainer.setROI(nativeX, nativeY, nativeW, nativeH);
 }
 
 void Mirror::draw(){
     fboVid.begin();
         ofNoFill();
     if(clickedMirrorDisplay == true){
-            ofSetColor(255, 34, 255);
-            ofSetLineWidth(2);
-        ofDrawRectangle(mirrorBoundsX, mirrorBoundsY, mirrorBoundsW, mirrorBoundsH); // if active draw Mirror Bounds
+        rectTransform.draw();
+        ofSetColor(255, 34, 255);
+        ofSetLineWidth(2);
+        ofDrawRectangle(mirrorBoundsX + videoDisplayX , mirrorBoundsY + videoDisplayY, mirrorBoundsW, mirrorBoundsH); // if active draw Mirror Bounds
         }
     fboVid.end();
 
@@ -60,22 +54,43 @@ void Mirror::draw(){
         mirrorContainer.drawROI(displayX, displayY, displayWidth, displayHeight); //Draws the magic mirror to display
         ofDrawRectangle(displayX, displayY, displayWidth, displayHeight); //draw Mirror Bounds
     fboView.end();
+    
+    
 
+}
+//--------------------------------------------------------------
+void Mirror::keyPressed(int key){
+    rectTransform.keyPressed(key);
+}
+
+//--------------------------------------------------------------
+void Mirror::keyReleased(int key){
+    rectTransform.keyReleased(key);
 }
 
 //--------------------------------------------------------------
 void Mirror::mouseDragged(int x, int y, int button){
+    rectTransform.mouseDragged(x - ofGetWidth()/3 , y, button);
+    
     if (insideMirrorGrabber == true && clickedMirrorDisplay == true) {
-        posX = x - ofsetx;
-        posY = y - ofsety;
+        mirrorBoundsX = x - ofsetx;
+        mirrorBoundsY = y - ofsety;
     }
+    
+//    if(x - ofsetx < videoDisplayX){
+//        mirrorBoundsX = 0;
+//        std::cout << "Yooooo get back " << "\n";
+//    }
 }
+
 
 //--------------------------------------------------------------
 void Mirror::mousePressed(int x, int y, int button){
-    if( x > posX + ofGetWidth()/3 && x < ((posX + ofGetWidth()/3) + width) &&  y > posY && y < (posY + height) && clickedMirrorDisplay == true ){ // ACHTUNG WORKAROUND "ofGetWidth()/3"
-        ofsetx = x - posX;
-        ofsety = y - posY;
+    rectTransform.mousePressed(x - ofGetWidth()/3, y, button);
+    
+    if( x > mirrorBoundsX + ofGetWidth()/3 + videoDisplayX && x < ((mirrorBoundsX + mirrorBoundsW + ofGetWidth()/3) + videoDisplayX ) &&  y > mirrorBoundsY && y < (mirrorBoundsY + mirrorBoundsH) && clickedMirrorDisplay == true ){ // ACHTUNG WORKAROUND "ofGetWidth()/3"
+        ofsetx = x - mirrorBoundsX;
+        ofsety = y - mirrorBoundsY;
         insideMirrorGrabber = true;
     }
     
@@ -91,6 +106,7 @@ void Mirror::mousePressed(int x, int y, int button){
 
 //--------------------------------------------------------------
 void Mirror::mouseReleased(int x, int y, int button){
+    rectTransform.mouseReleased(x - ofGetWidth()/3, y, button);
     insideMirrorGrabber = false;
 }
 

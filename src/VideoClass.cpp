@@ -2,28 +2,29 @@
 #include "ofApp.h"
 
 ofVideoPlayer clip;
-int videoX, videoY, videoW, videoH, videoMargin, videoDivisorH, videoDivisorW;
+int videoDisplayX, videoDisplayY, videoDisplayW, videoDisplayH, videoDisplayMargin, videoDivisorH;
 
 void VideoExtern::setup(){
-    clip.load("test_long.mp4");
-    clip.play();
-    
-    videoMargin = 0;
-    
+    ofSetLogLevel(OF_LOG_VERBOSE);
+//    clip.load("rocket.mp4");
+//    clip.play();
+    videoDisplayMargin = 100;
     if(clip.getWidth() < clip.getHeight()){
-        videoH = fboVid.getHeight() - videoMargin;
-        videoW = videoH * clip.getWidth() / clip.getHeight();
-        videoX = fboVid.getWidth() / 2 - videoW / 2;
-        videoY = fboVid.getHeight() / 2 - videoH / 2;
+        videoDisplayH = fboVid.getHeight() - videoDisplayMargin;
+        videoDisplayW = videoDisplayH * clip.getWidth() / clip.getHeight();
+        videoDisplayX = fboVid.getWidth() / 2 - videoDisplayW / 2;
+        videoDisplayY = fboVid.getHeight() / 2 - videoDisplayH / 2;
         
-        videoDivisorH = clip.getHeight() / videoH;
-        videoDivisorW = clip.getWidth() / videoW;
+        
     }else{
-        videoW = fboVid.getWidth() - videoMargin;
-        videoH = videoW * clip.getHeight() / clip.getWidth();
-        videoX = 0;
-        videoY = fboVid.getHeight() / 2 - videoH / 2;
+        videoDisplayW = fboVid.getWidth() - videoDisplayMargin;
+        videoDisplayH = videoDisplayW * clip.getHeight() / clip.getWidth();
+        videoDisplayX = fboVid.getWidth() / 2 - videoDisplayW / 2;
+        videoDisplayY = fboVid.getHeight() / 2 - videoDisplayH / 2;
     }
+    
+    videoDivisorH = clip.getHeight() / videoDisplayH;
+    
 }
 
 void VideoExtern::update(){
@@ -33,7 +34,44 @@ void VideoExtern::update(){
 void VideoExtern::draw(){
     fboVid.begin();
     ofClear(50);
-    clip.draw(videoX, videoY, videoW, videoH);
+    clip.draw(videoDisplayX, videoDisplayY, videoDisplayW, videoDisplayH);
     fboVid.end();
 }
 
+void VideoExtern::keyReleased(int key){
+    if (key == ' '){
+        ofFileDialogResult openFileResult= ofSystemLoadDialog("Select a Video file");
+        
+        if (openFileResult.bSuccess){
+            
+            ofLogVerbose("User selected a file");
+            processOpenFileSelection(openFileResult);
+            
+        }else {
+            ofLogVerbose("User hit cancel");
+        }
+    }
+}
+
+void VideoExtern::processOpenFileSelection(ofFileDialogResult openFileResult){
+    ofLogVerbose("getName(): "  + openFileResult.getName());
+    ofLogVerbose("getPath(): "  + openFileResult.getPath());
+    
+    ofFile file (openFileResult.getPath());
+    
+    if (file.exists()){
+    
+    ofLogVerbose("The file exists - now checking the type via file extension");
+    string fileExtension = ofToUpper(file.getExtension());
+    
+    //We only want images
+        if (fileExtension == "MP4" || fileExtension == "MPEG4" || fileExtension == "MOV") {
+            ofLogVerbose("File could be loaded, it's a video!");
+            
+            clip.close();
+            clip.load(openFileResult.getPath());
+            clip.play();
+            setup();
+        }
+    }
+}
