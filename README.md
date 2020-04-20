@@ -12,7 +12,7 @@ Should be fairly easy to port for use with other dimensions and panels.
 screenshots will follow as soon as i get it to work again.
 
 issues:
-- RectClass instantiates rectTransform just once instead of 5 times
+- RectClass instantiates rectTransform just once instead of 5 times ✓
 - export of video needs to be rewritten
 - Mirrors bigger than the video scales the displayed part on the mirrordisplay
 
