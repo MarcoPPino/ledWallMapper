@@ -34,7 +34,7 @@ public:
     
     RectTransform rectTransform;
     
-    int divider = 4;
+    int divider;
     int ofsetx, ofsety;
     bool insideMirrorGrabber = false;
     bool clickedMirrorDisplay = false;

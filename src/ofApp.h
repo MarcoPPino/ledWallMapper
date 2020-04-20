@@ -31,14 +31,7 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
-
-//    Mirror mirror;
-//    Mirror mirror2;
-//    Mirror mirror3;
-//    Mirror mirror4;
-//    Mirror mirror5;
     
-    #define ELEMCOUNT 5
-    
+    #define ELEMCOUNT 5    
     Mirror mirror[ELEMCOUNT];
 };

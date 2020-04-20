@@ -8,7 +8,6 @@ int sizeArr[5][8];
 void ofApp::setup(){
     
     int mirrorGrabberArr[5][4] = {{0, 0, 384, 960}, {384, 0, 384, 960}, {768, 0, 384, 960}, {1152, 0, 384, 767}, {1536, 30, 384, 930}};
-//    int mirrorDisplayArr[5][4] = {{0, 0, 384, 960}, {384, 0, 384, 960}, {768, 0, 384, 960}, {1152, 0, 384, 767}, {1536, 30, 384, 930}};
 
     fboVid.allocate(ofGetWidth()/3*2, ofGetHeight(), GL_RGB);
     fboView.allocate(ofGetWidth()/3, 350, GL_RGB);
@@ -29,7 +28,6 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    
     videoExtern.draw();
     
     fboView.begin();
@@ -39,6 +37,7 @@ void ofApp::draw(){
     for(int i=0; i<ELEMCOUNT; i++){
             mirror[i].draw();
     }
+    
 
     fboVid.draw(ofGetWidth()/3, 0);
     fboView.draw(0,0);
