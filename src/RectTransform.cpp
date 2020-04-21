@@ -48,8 +48,8 @@ void RectTransform::draw(){
     if(insideGlobal == true || insideHandle == true){
         string x = ofToString(rec.getX());
         string y = ofToString(rec.getY());
-        string w = ofToString(rec.getWidth());
-        string h = ofToString(rec.getHeight());
+        string w = ofToString(abs(rec.getWidth()));
+        string h = ofToString(abs(rec.getHeight()));
         string str;
         if(insideGlobal == true){
             str ="X: " + x + "px" + "\n" + "Y: " + y + "px";
@@ -221,6 +221,10 @@ void RectTransform::mouseReleased(int x, int y, int button){
     insideSide2 = false;
     insideSide3 = false;
     insideSide4 = false;
+    
+    if(!rec.isStandardized()){
+        rec = rec.getStandardized();
+    }
     
 }
 
