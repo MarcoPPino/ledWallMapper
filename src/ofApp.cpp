@@ -37,7 +37,6 @@ void ofApp::draw(){
     for(int i=0; i<ELEMCOUNT; i++){
             mirror[i].draw();
     }
-    
 
     fboVid.draw(ofGetWidth()/3, 0);
     fboView.draw(0,0);

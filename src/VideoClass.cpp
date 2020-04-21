@@ -6,8 +6,6 @@ int videoDisplayX, videoDisplayY, videoDisplayW, videoDisplayH, videoDisplayMarg
 
 void VideoExtern::setup(){
     ofSetLogLevel(OF_LOG_VERBOSE);
-//    clip.load("rocket.mp4");
-//    clip.play();
     videoDisplayMargin = 100;
     if(clip.getWidth() < clip.getHeight()){
         videoDisplayH = fboVid.getHeight() - videoDisplayMargin;
@@ -63,7 +61,7 @@ void VideoExtern::processOpenFileSelection(ofFileDialogResult openFileResult){
     string fileExtension = ofToUpper(file.getExtension());
     
     //We only want images
-        if (fileExtension == "MP4" || fileExtension == "MPEG4" || fileExtension == "MOV") {
+        if (fileExtension == "MP4" || fileExtension == "MPEG4" || fileExtension == "MOV" || fileExtension == "JPG") {
             ofLogVerbose("File could be loaded, it's a video!");
             
             clip.close();

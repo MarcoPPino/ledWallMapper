@@ -17,12 +17,10 @@ void Mirror::setup(int mirrorGrabberArr[5]){
 
 void Mirror::update(){
     rectTransform.update();
-    nativeX = ofMap(rectTransform.x, 0, videoDisplayW, 0, clip.getWidth());
-    nativeY = ofMap(rectTransform.y, 0, videoDisplayH - 100, 0, clip.getHeight());
+    nativeX = ofMap(rectTransform.x, videoDisplayX, videoDisplayX + videoDisplayW, 0, clip.getWidth());
+    nativeY = ofMap(rectTransform.y, videoDisplayY, videoDisplayY + videoDisplayH , 0, clip.getHeight());
     nativeW = ofMap(rectTransform.width, 0, videoDisplayW, 0, clip.getWidth());
     nativeH = ofMap(rectTransform.height, 0, videoDisplayH, 0, clip.getHeight());
-    
-    
     
     clip.update(); //Update Video from videoClass
     mirrorContainer.setFromPixels(clip.getPixels().getData(), clip.getWidth(), clip.getHeight()); // Grab the Whole video. MirrorContainer is CVColorImage
