@@ -9,14 +9,16 @@ As not everybody in our office works with video software or the terminal, to use
 LedWallMapper loads a video and provides functionality to define which part of the video should be mapped to each panel.
 Should be fairly easy to port for use with other dimensions and panels.
 
-screenshots will follow as soon as i get it to work again.
+![LedWallMapper_screenshot](https://user-images.githubusercontent.com/25278349/79851072-1efe4e00-83c5-11ea-875d-bc551a2cc93f.png)
+
 
 issues:
-- RectClass instantiates rectTransform just once instead of 5 times
+- RectClass instantiates rectTransform just once instead of 5 times ✓ -still needs some work (spawn and fence to video dimensions)
 - export of video needs to be rewritten
 - Mirrors bigger than the video scales the displayed part on the mirrordisplay
 
 todo: 
 - LESS MESS
-- more options to show things other then videos. eg. shaders
+- more options to show things rather then videos. eg. shaders
 - check if sending fbo via syphon to another app works properly -> maybe theres no need for video export -> live 
+- Prevent RectTransform from going <0
