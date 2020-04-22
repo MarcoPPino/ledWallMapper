@@ -35,18 +35,18 @@ void VideoExtern::draw(){
 }
 
 void VideoExtern::keyReleased(int key){
-    if (key == ' '){
-        ofFileDialogResult openFileResult= ofSystemLoadDialog("Select a Video file");
-        
-        if (openFileResult.bSuccess){
-            
-            ofLogVerbose("User selected a file");
-            processOpenFileSelection(openFileResult);
-            
-        }else {
-            ofLogVerbose("User hit cancel");
-        }
-    }
+//    if (key == ' '){
+//        ofFileDialogResult openFileResult = ofSystemLoadDialog("Select a Video file");
+//
+//        if (openFileResult.bSuccess){
+//
+//            ofLogVerbose("User selected a file");
+//            processOpenFileSelection(openFileResult);
+//
+//        }else {
+//            ofLogVerbose("User hit cancel");
+//        }
+//    }
 }
 
 void VideoExtern::processOpenFileSelection(ofFileDialogResult openFileResult){
@@ -67,7 +67,7 @@ void VideoExtern::processOpenFileSelection(ofFileDialogResult openFileResult){
             clip.close();
             clip.load(openFileResult.getPath());
             clip.play();
-            setup();
+            VideoExtern::setup();
         }
     }
 }

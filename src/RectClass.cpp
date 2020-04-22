@@ -1,18 +1,19 @@
 #include "RectClass.hpp"
 #include "ofApp.h"
 
-ofxPanel gui;
+int divider = 4;
 
 void Mirror::setup(int mirrorGrabberArr[5]){
     rectTransform.setup(mirrorGrabberArr[0], mirrorGrabberArr[1], mirrorGrabberArr[2], mirrorGrabberArr[3]);
     
-    divider = 4;
     displayX = mirrorGrabberArr[0] / divider; //Get Position & size of MirrorDisplay -  might change soon
     displayY = mirrorGrabberArr[1] / divider;
     displayWidth = mirrorGrabberArr[2] / divider;
     displayHeight = mirrorGrabberArr[3] / divider;
     
     mirrorContainer.allocate(ofGetWidth(), ofGetWidth()); //Allocate the Class Member context
+    
+    longYLocal = longY;
 }
 
 void Mirror::update(){
@@ -41,6 +42,11 @@ void Mirror::draw(){
         mirrorContainer.drawROI(displayX, displayY, displayWidth, displayHeight); //Draws the magic mirror to display
         ofDrawRectangle(displayX, displayY, displayWidth, displayHeight); //draw Mirror Bounds
     fboView.end();
+    
+    fboViewLong.begin();
+        ofNoFill();
+        mirrorContainer.drawROI(0, longYLocal, displayWidth, displayHeight); //Draws the magic mirror to display
+    fboViewLong.end();
     
     
 

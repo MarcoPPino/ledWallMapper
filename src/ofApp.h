@@ -1,18 +1,19 @@
 #pragma once
 
 #include "ofMain.h"
-#include "ofxGui.h"
 #include "ofxDatGui.h"
 #include "ofxOpenCv.h"
 #include "RectClass.hpp"
 #include "VideoClass.hpp"
 #include "RectTransform.hpp"
+#include "gui.hpp"
 
 extern ofFbo fboVid;
 extern ofFbo fboView;
+extern ofFbo fboViewLong;
 extern VideoExtern videoExtern;
 extern int mirrorGrabberArr[5][4];
-extern int mirrorDisplayArr[5][4];
+extern int longY;
 
 class ofApp : public ofBaseApp{
 	public:
@@ -31,6 +32,9 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
+    
+    
+    GuiClass* guiClass;
     
     #define ELEMCOUNT 5    
     Mirror mirror[ELEMCOUNT];

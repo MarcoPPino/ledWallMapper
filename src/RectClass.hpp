@@ -8,7 +8,7 @@
 #include "ofxOpenCv.h"
 #include "RectTransform.hpp"
 
-extern ofxPanel gui;
+extern int divider;
 
 
 class Mirror{
@@ -27,14 +27,14 @@ public:
     ofParameterGroup mainGroup;
     ofParameterGroup params;
     ofParameter<int>  mirrorBoundsX, mirrorBoundsY, mirrorBoundsW, mirrorBoundsH;
-    int displayX, displayY, displayWidth, displayHeight;
+    int displayX, displayY, displayWidth, displayHeight, longYLocal;
     int nativeX, nativeY, nativeW, nativeH;
     
     ofxCvColorImage mirrorContainer;
     
     RectTransform rectTransform;
     
-    int divider;
+    
     int ofsetx, ofsety;
     bool insideMirrorGrabber = false;
     bool clickedMirrorDisplay = false;

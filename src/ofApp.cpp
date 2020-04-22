@@ -2,20 +2,26 @@
 
 ofFbo fboVid;
 ofFbo fboView;
+ofFbo fboViewLong;
 VideoExtern videoExtern;
 int sizeArr[5][8];
+int longY = 0;
 //--------------------------------------------------------------
 void ofApp::setup(){
-    
+
     int mirrorGrabberArr[5][4] = {{0, 0, 384, 960}, {384, 0, 384, 960}, {768, 0, 384, 960}, {1152, 0, 384, 767}, {1536, 30, 384, 930}};
 
     fboVid.allocate(ofGetWidth()/3*2, ofGetHeight(), GL_RGB);
-    fboView.allocate(ofGetWidth()/3, 350, GL_RGB);
+    fboView.allocate(mirrorGrabberArr[0][2] * 5 / divider, mirrorGrabberArr[0][3] / divider, GL_RGB);
+    fboViewLong.allocate(mirrorGrabberArr[0][2] / divider, mirrorGrabberArr[0][3] * 5 / divider, GL_RGB); // height isnt quite right
     
     videoExtern.setup();
+    guiClass = new GuiClass();
+    guiClass->setup();
     
     for(int i=0; i<ELEMCOUNT; i++){
         mirror[i].setup(mirrorGrabberArr[i]);
+        longY = longY + mirror[i].displayHeight;
     }
 }
 
@@ -33,6 +39,10 @@ void ofApp::draw(){
     fboView.begin();
     ofClear(150);
     fboView.end();
+    
+    fboViewLong.begin();
+    ofClear(150);
+    fboViewLong.end();
 
     for(int i=0; i<ELEMCOUNT; i++){
             mirror[i].draw();
@@ -40,6 +50,9 @@ void ofApp::draw(){
 
     fboVid.draw(ofGetWidth()/3, 0);
     fboView.draw(0,0);
+    fboViewLong.draw(500,0);
+    
+    guiClass->draw();
     
 }
 

@@ -12,12 +12,12 @@ extern int videoDisplayX, videoDisplayY, videoDisplayW, videoDisplayH, videoDisp
 
 class VideoExtern{
 public:
-    void setup();
+    static void setup();
     void update();
     void draw();
     void keyReleased(int key);
     
-    void processOpenFileSelection(ofFileDialogResult openFileResult);
+    static void processOpenFileSelection(ofFileDialogResult openFileResult);
     
 };
 
